@@ -19,12 +19,13 @@ app.use('/:id', express.static(dir + '/public'));
 app.use(
   `${dir}`,
   proxy({
-    target: 'http://http://localhost:3002'
+    target: 'http://ec2-18-188-146-137.us-east-2.compute.amazonaws.com'
   })
 );
 
-app.listen(3202, () => {
-  console.log('Listening on port 3202')
+var port = process.env.PORT || 3202;
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`)
 });
 
 module.exports.app = app;
